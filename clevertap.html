@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="shortcut icon" href="https://d35fo82fjcw0y8.cloudfront.net/2021/03/09014731/image-2.png">
+<title>JS | Clevertap</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="/jit.js" defer></script>
+<link rel="manifest" href="/manifest.json">
+<script src="/clevertap_sw.js" defer></script>
+<script type="text/javascript">
+  var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+clevertap.account.push({"id": "TEST-75R-654-5Z6Z"});
+clevertap.privacy.push({optOut: false}); 
+clevertap.privacy.push({useIP: false});
+(function () {
+      var wzrk = document.createElement('script');
+      wzrk.type = 'text/javascript';
+      wzrk.async = true;
+      wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wzrk, s);
+})();
+
+clevertap.notifications.push({
+  "titleText":'Would you like to receive Push Notifications Jitendra?',
+  "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+  "okButtonText":'Hell YEah!',
+  "rejectButtonText":'No thanks',
+  "okButtonColor":'#f28046'
+});
+
+navigator.permissions.query({name: 'notifications'}).then(function(permission) {  
+  // Initial status is available at permission.state
+
+  permission.onchange = function() {  
+    // Whenever there's a change, updated status is available at this.state
+    console.log(this.state);
+    if (this.state === "granted"){
+        clevertap.event.push('Notification Permission Granted')
+    }
+  };
+});
+
+</script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="#onUserLogin" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
+    <a href="#pushProfile" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Push Profile</a>
+    <a href="#engagement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Web Push</a>
+    <a href="#engagement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Web Pop-up</a>
+    <a href="#extras" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Extras</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#onUserLogin" class="w3-bar-item w3-button w3-padding-large">Login</a>
+    <a href="#pushProfile" class="w3-bar-item w3-button w3-padding-large">Push Profile</a>
+    <a href="#engagement" class="w3-bar-item w3-button w3-padding-large">Web Push</a>
+    <a href="#engagement" class="w3-bar-item w3-button w3-padding-large">Web Pop-up</a>
+    <a href="#extras" class="w3-bar-item w3-button w3-padding-large">Extras</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">CLEVERTAP</h1>
+  <p class="w3-xlarge">By Jitendra Sahoo</p>
+  <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top w3-hover-white" onclick="start()">Let's Get Started</button>
+  <p><label id="ctid"></label></p>
+</header>
+
+<!-- First Grid OnUserLogin-->
+<div class="w3-row-padding w3-padding-64 w3-container" id="onUserLogin">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Login</h1>
+      <h5>Fill In the details and Click the button to call clevertap's onUserLogin() method. !!!</h5>
+      <p class="w3-text-grey">CleverTap automatically creates a user profile for every person visiting your website. At first, the user profile starts out as anonymous which means the user profile does not contain any identifiable information. Enrich the user profile with information, such as the user’s name or email, by calling clevertap.onuserlogin.</p>
+        <p></p>
+        <!-- <form> -->
+        <form >
+        <div class="w3-section">
+            <label>Name</label>
+            <input class="w3-input w3-border" type="text" id="profileName" required>
+        </div>
+        <div class="w3-section">
+            <label>Email</label>
+            <input class="w3-input w3-border" type="text" name="Email" id="profileEmail" required>
+        </div>
+        <div class="w3-section">
+            <label>Identity</label>
+            <input class="w3-input w3-border" type="text" name="Identity" id="profileIdentity" required>
+        </div>
+        <div class="w3-section">
+            <label>Phone (add +91)</label>
+            <input class="w3-input w3-border" type="text" name="Phone" id="profilePhone" required>
+        </div>
+        <button type="button" class="w3-button w3-block w3-margin-bottom w3-red" onclick="loginClicked()">Call Function</button>
+        </form>
+        <!-- </form> -->
+        
+    </div>
+
+    <div class="w3-third w3-center">
+      <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
+    </div>
+  </div>
+</div>
+
+<!-- Second Grid - Push Profile -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container" id="pushProfile">
+  <div class="w3-content">
+    <div class="w3-third w3-center">
+      <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+    </div>
+
+    <div class="w3-twothird">
+        <div class="w3-padding-32">
+            <div class="w3-container w3-red">
+                <h2><i class="w3-margin-right"></i>Push Profile</h2>
+            </div>
+            <div class="w3-container w3-white w3-padding-16">
+                <form>
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                    <label>Key 1</label>
+                    <input id="key1" class="w3-input w3-border" type="text" placeholder="Eg. Customer Type" required="">
+                    </div>
+                    <div class="w3-half">
+                    <label>Value 1</label>
+                    <input id="val1" class="w3-input w3-border" type="text" placeholder="Gold,Silver,Normal" required="">
+                    </div>
+                </div>
+                <div id="pushDown">
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-half">
+                        <button type="button" class="w3-button w3-red" onclick="pushClicked()">Push Data to profile</button>
+                    </div>
+                    <div class="w3-half w3-right-align">
+                        <button type="button" class="w3-margin-right" onclick="pushPlus()"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="w3-margin-right" onclick="pushMinus()"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                
+                </form>
+            </div>
+        </div>
+      <h1>clevertap.profile.push()</h1>
+      <h5 class="w3-padding-32">All or any user property can be set or upadated using this code. You can also change communication preference flags to true/false.</h5>
+
+      <!-- <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+    </div>
+  </div>
+</div>
+
+<!-- Third Grid -->
+
+<div class="w3-container w3-black w3-center w3-padding-64" id="engagement">
+    <h1 class="w3-margin w3-xlarge">Engagements</h1>
+    <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-half w3-margin-bottom">
+            <ul class="w3-ul w3-white w3-center">
+            <li class="w3-red w3-xlarge w3-padding-32">Web Push Notifications</li>
+            <li class="w3-padding-16">clevertap_sw.js</li>
+            <li class="w3-padding-16">Sender Id in Manifest</li>
+            <li class="w3-padding-16">clevertap.notifications.push()</li>
+            <li class="w3-padding-16">"askAgainTimeInSeconds”:5</li>
+            <li class="w3-padding-16">
+                <h2>"skipDialog":true</h2>
+                <span class="w3-opacity">To skip the CleverTap soft pop-up</span>
+            </li>
+            <li class="w3-light-grey w3-padding-24">
+                <button type="button" class="w3-button w3-black w3-padding-large w3-hover-white" onclick="webpushClicked()">Send Push Event</button>
+            </li>
+            </ul>
+        </div>
+        
+        <div class="w3-half">
+            <ul class="w3-ul w3-white w3-center">
+            <li class="w3-red w3-xlarge w3-padding-32">Web Pop-up Notifications</li>
+            <li class="w3-padding-16">Web Design</li>
+            <li class="w3-padding-16">Photography</li>
+            <li class="w3-padding-16">50GB Storage</li>
+            <li class="w3-padding-16">Endless Support</li>
+            <li class="w3-padding-16">
+                <h2>$ 25</h2>
+                <span class="w3-opacity">per month</span>
+            </li>
+            <li class="w3-light-grey w3-padding-24">
+                <button type="button" onclick="popupClicked()" class="w3-button w3-black w3-padding-large w3-hover-white">Send Pop-up Event</button>
+            </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Fourth Grid -->
+
+<div class="w3-container w3-red w3-center w3-padding-64" id="extras">
+    <!-- <button class="w3-button w3-white">Charged Event</button> -->
+    <div class="">
+            <div class="w3-bar w3-black">
+              <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Charged');"><i class="fa fa-plane w3-margin-right"></i>Charged</button>
+              <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Debug');"><i class="fa fa-bed w3-margin-right"></i>Debug</button>
+              <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Account');"><i class="fa fa-car w3-margin-right"></i>New Account</button>
+            </div>
+        
+            <!-- Tabs -->
+            <div id="Charged" class="w3-container w3-white w3-padding-16 myLink" style="display: none;">
+              <h3>Raise A Charged Event</h3>
+              <div class="w3-row-padding" style="margin:0 -16px;">
+                    <form id="itemCounter">
+                          <div class="w3-row-padding w3-center">
+                              <p class="w3-col s4"><input class="w3-input w3-border" type="text" id="chargeAmt" placeholder="Amount"></p>
+                              <p class="w3-col s4"><input class="w3-input w3-border" type="text" id="chargeMode" placeholder="Payment Mode"></p>
+                              <p class="w3-col s4"><input class="w3-input w3-border" type="text" id="chargeId" placeholder="Transaction Id"></p>
+                          </div>
+                          <div class="w3-row-padding w3-center">
+                            <p class="w3-left-align w3-half"><label class="w3-large">Items List :</label></p>
+                            <div class="w3-right-align w3-half">
+                              <button type="button" class="w3-margin-right" onclick="itemPlus()"><i class="fa fa-plus"></i></button>
+                              <button type="button" class="w3-margin-right" onclick="itemMinus()"><i class="fa fa-minus"></i></button>
+                            </div>
+                          </div>
+                          <div class="w3-row-padding w3-center">
+                              <p class="w3-col s4"><input class="w3-input w3-border" id="item1" placeholder="Item Name"></p>
+                              <p class="w3-col s4"><input class="w3-input w3-border" id="cat1" placeholder="Category"></p>
+                              <p class="w3-col s4"><input class="w3-input w3-border" id="quan1" placeholder="Quantity"></p>
+                          </div>
+                          <div></div>
+                    </form>
+                    <p><button type="button" class="w3-button w3-black" onclick="chargeClicked()"> Send Event </button></p>
+                </div>
+            </div>
+        
+            <div id="Debug" class="w3-container w3-white w3-padding-16 myLink " style="display: none;">
+                <h3>Debugging</h3>
+                <div class="w3-left-align">
+                <p>This section is applicable for all browsers such as, Chrome, Firefox, and Safari. Error messages and warnings are logged to the JS console of the browser.</p>
+                <p>For verbose logging, enable verbose logging of all communication with the CleverTap servers by setting the WZRK_D variable in sessionStorage. In the developer console of your browser type, use: sessionStorage['WZRK_D'] = '';</p>
+                <p>Just Copy paste the code in the console and change it to all levels.</p>
+                </div>
+            </div>
+        
+            <div id="Account" class="w3-container w3-white w3-padding-16 myLink" style="display: block;">
+              <h3>Test With your account.</h3>
+              <p><span class="w3-tag w3-deep-orange">ALERT!</span> &nbsp;Do no relaod the page after you click on Initialize. Reloading the Page will change account to default, i.e, My Account.<br> If you want access to the original account please contact me (The Owner.)</p>
+              <div class="w3-row-padding w3-center">
+                <div class="w3-half">
+                    <input class="w3-input w3-border" type="text" placeholder="Enter Account ID :" id="accId">
+                </div>
+                <div class="w3-half">
+                    <input class="w3-input w3-border" type="text" placeholder="Enter Region : eu1, in1, sg1 etc." id="reg1">
+                </div>
+              </div>
+              <p><button class="w3-button w3-dark-grey" onclick="initAccClicked()">Initialize CT Account</button></p>
+            </div>
+          </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-center w3-opacity">  
+<div class="w3-xlarge w3-padding-32">
+    <a href="https://www.instagram.com/jitendras_/?hl=en"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+    <a href="https://www.snapchat.com/add/jitz2497?share_id=vJizIe2A__U&locale=en-IN"><i class="fa fa-snapchat w3-hover-opacity"></i></a>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+</div>
+<p>Copied and Used by Jitendra Sahoo For CT testing.</p>
+<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+<script>
+        // Tabs
+        function openLink(evt, linkName) {
+          var i, x, tablinks;
+          x = document.getElementsByClassName("myLink");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-white", "");
+          }
+          document.getElementById(linkName).style.display = "block";
+          evt.currentTarget.className += " w3-white";
+        }
+        
+        // Click on the first tablink on load
+        document.getElementsByClassName("tablink")[0].click();
+
+</script>
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
