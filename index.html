@@ -32,7 +32,8 @@ clevertap.notifications.push({
   "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
   "okButtonText":'Hell YEah!',
   "rejectButtonText":'No thanks',
-  "okButtonColor":'#f28046'
+  "okButtonColor":'#f28046',
+  "serviceWorkerPath”: “/TestWeb/js/clevertap_sw.js”
 });
 
 navigator.permissions.query({name: 'notifications'}).then(function(permission) {  
