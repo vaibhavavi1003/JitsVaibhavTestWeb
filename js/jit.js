@@ -250,14 +250,14 @@ function itemPlusEvt() {
     ptag2.setAttribute("id","evtp2"+itemcount1)
 
     var propName = document.createElement("input");
-    item.setAttribute("class","w3-input w3-border");
-    item.setAttribute("placeholder","Event Property Name");
-    item.setAttribute("id","propName"+itemcount1);
+    propName.setAttribute("class","w3-input w3-border");
+    propName.setAttribute("placeholder","Event Property Name");
+    propName.setAttribute("id","propName"+itemcount1);
 
     var propVal = document.createElement("input");
-    category.setAttribute("class","w3-input w3-border");
-    category.setAttribute("placeholder","Event Property Value");
-    category.setAttribute("id","propVal"+itemcount1);
+    propVal.setAttribute("class","w3-input w3-border");
+    propVal.setAttribute("placeholder","Event Property Value");
+    propVal.setAttribute("id","propVal"+itemcount1);
 
     itemcounter2.appendChild(divrow);
     divrow.appendChild(ptag1);
