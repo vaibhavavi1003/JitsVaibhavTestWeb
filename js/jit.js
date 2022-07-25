@@ -259,7 +259,7 @@ function itemPlusEvt() {
     propVal.setAttribute("placeholder","Event Property Value");
     propVal.setAttribute("id","propVal"+itemcount1);
 
-    itemcounter2.appendChild(divrow);
+    itemcounter1.appendChild(divrow);
     divrow.appendChild(ptag1);
     divrow.appendChild(ptag2);
     ptag1.appendChild(propName);
@@ -268,9 +268,9 @@ function itemPlusEvt() {
 }
 
 function itemMinusEvt() {
-    if (itemcount2 > 1) {
+    if (itemcount1 > 1) {
         
-        const divrow = document.getElementById("itemdivrow"+itemcount1);
+        const divrow = document.getElementById("evtdivrow"+itemcount1);
         const ptag1 = document.getElementById("evtp1"+itemcount1);
         const ptag2 = document.getElementById("evtp2"+itemcount1);
         const propName = document.getElementById("propName"+itemcount1);
