@@ -1,6 +1,7 @@
 // For OnUserLogin Function Button Click
 var pushcount = 1;
-var itemcount = 1;
+var itemcount1 = 1;
+var itemcount2 = 1;
 
 
 
@@ -35,7 +36,8 @@ function loginClicked(){
     
 }
 var down = document.getElementById("pushDown");
-var itemcounter = document.getElementById("itemCounter");
+var itemcounter1 = document.getElementById("itemCounter1");
+var itemcounter2 = document.getElementById("itemCounter2");
 
 function pushPlus(){
     pushcount++;
@@ -134,39 +136,39 @@ function popupClicked(){
 
 function itemPlus() {
 
-    itemcount++;
+    itemcount2++;
     var divrow = document.createElement("div");
-    divrow.setAttribute("id","itemdivrow"+itemcount);
+    divrow.setAttribute("id","itemdivrow"+itemcount2);
     divrow.setAttribute("class","w3-row-padding w3-center");
     
     var ptag1 = document.createElement("p");
     ptag1.setAttribute("class","w3-col s4");
-    ptag1.setAttribute("id","p1"+itemcount)
+    ptag1.setAttribute("id","p1"+itemcount2)
 
     var ptag2 = document.createElement("p");
     ptag2.setAttribute("class","w3-col s4");
-    ptag2.setAttribute("id","p2"+itemcount)
+    ptag2.setAttribute("id","p2"+itemcount2)
 
     var ptag3 = document.createElement("p");
     ptag3.setAttribute("class","w3-col s4");
-    ptag3.setAttribute("id","p3"+itemcount)
+    ptag3.setAttribute("id","p3"+itemcount2)
 
     var item = document.createElement("input");
     item.setAttribute("class","w3-input w3-border");
     item.setAttribute("placeholder","Item Name");
-    item.setAttribute("id","item"+itemcount);
+    item.setAttribute("id","item"+itemcount2);
 
     var category = document.createElement("input");
     category.setAttribute("class","w3-input w3-border");
     category.setAttribute("placeholder","Category");
-    category.setAttribute("id","cat"+itemcount);
+    category.setAttribute("id","cat"+itemcount2);
 
     var quan = document.createElement("input");
     quan.setAttribute("class","w3-input w3-border");
     quan.setAttribute("placeholder","Quantity");
-    quan.setAttribute("id","quan"+itemcount);
+    quan.setAttribute("id","quan"+itemcount2);
 
-    itemcounter.appendChild(divrow);
+    itemcounter2.appendChild(divrow);
     divrow.appendChild(ptag1);
     divrow.appendChild(ptag2);
     divrow.appendChild(ptag3);
@@ -177,15 +179,15 @@ function itemPlus() {
 }
 
 function itemMinus() {
-    if (itemcount > 1) {
+    if (itemcount2 > 1) {
         
-        const divrow = document.getElementById("itemdivrow"+itemcount);
-        const ptag1 = document.getElementById("p1"+itemcount);
-        const ptag2 = document.getElementById("p2"+itemcount);
-        const ptag3 = document.getElementById("p3"+itemcount);
-        const item = document.getElementById("item"+itemcount);
-        const category = document.getElementById("cat"+itemcount);
-        const quan = document.getElementById("quan"+itemcount);
+        const divrow = document.getElementById("itemdivrow"+itemcount2);
+        const ptag1 = document.getElementById("p1"+itemcount2);
+        const ptag2 = document.getElementById("p2"+itemcount2);
+        const ptag3 = document.getElementById("p3"+itemcount2);
+        const item = document.getElementById("item"+itemcount2);
+        const category = document.getElementById("cat"+itemcount2);
+        const quan = document.getElementById("quan"+itemcount2);
 
         divrow.remove();
         ptag1.remove();
@@ -195,11 +197,11 @@ function itemMinus() {
         category.remove();
         quan.remove();
 
-        itemcount--;
+        itemcount2--;
 
     } else {
         alert("Minimum One Item Detail Should be Passed with Charged Event.");
-        console.debug("Charged Item Count is "+itemcount+" and still trying to reduce the items feild.");
+        console.debug("Charged Item Count is "+itemcount2+" and still trying to reduce the items feild.");
     }
 }
 
@@ -208,7 +210,7 @@ function chargeClicked() {
     var chargeMode = document.getElementById("chargeMode").value;
     var chargeId = document.getElementById("chargeId").value;
 
-    var count = itemcount;
+    var count = itemcount2;
     var chargeDict = {};
     var chargeArr = [];
 
@@ -230,6 +232,82 @@ function chargeClicked() {
         "Transaction ID": chargeId,
         "Items": chargeArr
     });
+}
+
+function itemPlusEvt() {
+
+    itemcount1++;
+    var divrow = document.createElement("div");
+    divrow.setAttribute("id","evtdivrow"+itemcount1);
+    divrow.setAttribute("class","w3-row-padding w3-center");
+    
+    var ptag1 = document.createElement("p");
+    ptag1.setAttribute("class","w3-half s4");
+    ptag1.setAttribute("id","evtp1"+itemcount1)
+
+    var ptag2 = document.createElement("p");
+    ptag2.setAttribute("class","w3-half s4");
+    ptag2.setAttribute("id","evtp2"+itemcount1)
+
+    var propName = document.createElement("input");
+    item.setAttribute("class","w3-input w3-border");
+    item.setAttribute("placeholder","Event Property Name");
+    item.setAttribute("id","propName"+itemcount1);
+
+    var propVal = document.createElement("input");
+    category.setAttribute("class","w3-input w3-border");
+    category.setAttribute("placeholder","Event Property Value");
+    category.setAttribute("id","propVal"+itemcount1);
+
+    itemcounter2.appendChild(divrow);
+    divrow.appendChild(ptag1);
+    divrow.appendChild(ptag2);
+    ptag1.appendChild(propName);
+    ptag2.appendChild(propVal);
+
+}
+
+function itemMinusEvt() {
+    if (itemcount2 > 1) {
+        
+        const divrow = document.getElementById("itemdivrow"+itemcount1);
+        const ptag1 = document.getElementById("evtp1"+itemcount1);
+        const ptag2 = document.getElementById("evtp2"+itemcount1);
+        const propName = document.getElementById("propName"+itemcount1);
+        const propVal = document.getElementById("propVal"+itemcount1);
+
+        divrow.remove();
+        ptag1.remove();
+        ptag2.remove();
+        propName.remove();
+        propVal.remove();
+
+        itemcount1--;
+
+    } else {
+        alert("Minimum One Event Propert Should be Passed with Event.");
+        console.debug("Event Property Count is "+itemcount1+" and still trying to reduce the items feild.");
+    }
+}
+
+function EvtBtnClicked() {
+    var evtName = document.getElementById("evtName").value;
+
+
+    var count = itemcount2;
+    var evtDict = {};
+    var evtArr = [];
+
+    for (let i = 1; i <= count; i++) {
+        var propName = document.getElementById("propName"+i).value;
+        var propVal = document.getElementById("propVal"+i).value;
+        
+        evtDict[propName] = propVal;
+
+        evtArr[i] = evtDict;
+    }
+
+    clevertap.event.push(evtName, {evtArr});
 }
 
 function initAccClicked() {
