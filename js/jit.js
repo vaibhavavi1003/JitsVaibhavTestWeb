@@ -307,7 +307,14 @@ function EvtBtnClicked() {
         evtArr[i] = evtDict;
     }
 
-    clevertap.event.push(evtName, {evtArr});
+    if (window.CleverTap) {
+        // Call Android interface for Web View             
+        CleverTap.pushEvent(evtName);          
+    }
+    else{
+        clevertap.event.push(evtName, {evtArr});
+    }
+    
 }
 
 function initAccClicked() {
