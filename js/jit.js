@@ -312,7 +312,7 @@ function EvtBtnClicked() {
         CleverTap.pushEvent(evtName);          
     }
     else{
-        clevertap.event.push(evtName, {evtArr});
+        clevertap.event.push(evtName);
     }
     
 }
