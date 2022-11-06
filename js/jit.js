@@ -6,10 +6,10 @@ clevertap.notificationCallback = function(msg){
       clevertap.raiseNotificationViewed();
   console.log("3");
       console.log(JSON.stringify(msg));            //your custom rendering implementation here
-      var $button = jQuery("<button></button>");   //element on whose click you want to raise the notification clicked event
-      $button.click(function(){
-         clevertap.raiseNotificationClicked();
-      });
+//       var $button = jQuery("<button></button>");   //element on whose click you want to raise the notification clicked event
+//       $button.click(function(){
+//          clevertap.raiseNotificationClicked();
+//       });
 };
 
 // For OnUserLogin Function Button Click
