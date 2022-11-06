@@ -47,7 +47,17 @@ navigator.permissions.query({name: 'notifications'}).then(function(permission) {
     }
   };
 });
-console.log("1");
+
+</script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+<body>
+  <script>
+    console.log("1");
 clevertap.notificationCallback = function(msg){
       //raise the notification viewed and clicked events in the callback
   console.log("2");
@@ -59,15 +69,7 @@ clevertap.notificationCallback = function(msg){
          clevertap.raiseNotificationClicked();
       });
 };
-
-</script>
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-.fa-anchor,.fa-coffee {font-size:200px}
-</style>
-</head>
-<body>
+  </script>
 
 <!-- Navbar -->
 <div class="w3-top">
