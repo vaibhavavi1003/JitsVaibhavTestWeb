@@ -311,6 +311,7 @@ function EvtBtnClicked() {
     var count = itemcount2;
     var evtDict = {};
     var evtArr = [];
+    
 
     for (let i = 1; i <= count; i++) {
         var propName = document.getElementById("propName"+i).value;
@@ -323,10 +324,10 @@ function EvtBtnClicked() {
 
     if (window.CleverTap) {
         // Call Android interface for Web View             
-        CleverTap.pushEvent(evtName);          
+        CleverTap.pushEvent(evtName,evtDict);          
     }
     else{
-        clevertap.event.push(evtName);
+        clevertap.event.push(evtName,evtDict);
     }
     
 }
