@@ -13,42 +13,44 @@
 <link rel="manifest" href="/TestWeb/json/manifest.json">
 
 <script type="text/javascript">
-  var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
-clevertap.account.push({"id": "TEST-75R-654-5Z6Z"});
-clevertap.privacy.push({optOut: false}); 
-clevertap.privacy.push({useIP: false});
-clevertap.dismissSpamControl = true;
-(function () {
-      var wzrk = document.createElement('script');
-      wzrk.type = 'text/javascript';
-      wzrk.async = true;
-      wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/clevertap.min.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(wzrk, s);
-})();
+  if(window.Clevertap){}
+  else {
+    var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+    clevertap.account.push({"id": "TEST-75R-654-5Z6Z"});
+    clevertap.privacy.push({optOut: false}); 
+    clevertap.privacy.push({useIP: false});
+    clevertap.dismissSpamControl = true;
+    (function () {
+        var wzrk = document.createElement('script');
+        wzrk.type = 'text/javascript';
+        wzrk.async = true;
+        wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/clevertap.min.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wzrk, s);
+    })();
 
-clevertap.notifications.push({
-  "titleText":'Would you like to receive Push Notifications Jitendra?',
-  "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
-  "okButtonText":'Hell YEah!',
-  "rejectButtonText":'No thanks',
-  "okButtonColor":'#f28046',
-  "askAgainTimeInSeconds":10,
-  "serviceWorkerPath":'/TestWeb/js/clevertap_sw.js'
-});
+    clevertap.notifications.push({
+    "titleText":'Would you like to receive Push Notifications Jitendra?',
+    "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+    "okButtonText":'Hell YEah!',
+    "rejectButtonText":'No thanks',
+    "okButtonColor":'#f28046',
+    "askAgainTimeInSeconds":10,
+    "serviceWorkerPath":'/TestWeb/js/clevertap_sw.js'
+    });
 
-navigator.permissions.query({name: 'notifications'}).then(function(permission) {  
-  // Initial status is available at permission.state
+    navigator.permissions.query({name: 'notifications'}).then(function(permission) {  
+    // Initial status is available at permission.state
 
-  permission.onchange = function() {  
-    // Whenever there's a change, updated status is available at this.state
-    console.log(this.state);
-    if (this.state === "granted"){
-        clevertap.event.push('Notification Permission Granted')
-    }
-  };
-});
-
+    permission.onchange = function() {  
+      // Whenever there's a change, updated status is available at this.state
+      console.log(this.state);
+      if (this.state === "granted"){
+          clevertap.event.push('Notification Permission Granted')
+      }
+    };
+    });
+  }
 </script>
   <script type="text/javascript" src="/TestWeb/js/jit.js" async></script>
 <style>
