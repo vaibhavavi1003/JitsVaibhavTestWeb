@@ -324,7 +324,7 @@ function EvtBtnClicked() {
 
     if (window.Clevertap) {
         // Call Android interface for Web View             
-        CleverTap.pushEvent(evtName,evtDict);          
+        Clevertap.pushEvent(evtName,evtDict);          
     }
     else{
         clevertap.event.push(evtName,evtDict);
