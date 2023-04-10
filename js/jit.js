@@ -322,7 +322,7 @@ function EvtBtnClicked() {
         evtArr[i] = evtDict;
     }
 
-    if (window.CleverTap) {
+    if (window.Clevertap) {
         // Call Android interface for Web View             
         CleverTap.pushEvent(evtName,evtDict);          
     }
