@@ -70,6 +70,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5SLRV86');</script>
 <!-- End Google Tag Manager -->
+
+
+<script>
+  if(window.Clevertap){}
+  else {
+    var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+    clevertap.account.push({"id": "TEST-75R-654-5Z6Z"});
+    clevertap.privacy.push({optOut: false}); 
+    clevertap.privacy.push({useIP: false});
+    clevertap.dismissSpamControl = true;
+    (function () {
+        var wzrk = document.createElement('script');
+        wzrk.type = 'text/javascript';
+        wzrk.async = true;
+        wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/clevertap.min.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wzrk, s);
+    })();
+  }
+  </script>
 </head>
 <body>
   
