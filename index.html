@@ -46,7 +46,14 @@
       // Whenever there's a change, updated status is available at this.state
       console.log(this.state);
       if (this.state === "granted"){
-          clevertap.event.push('Notification Permission Granted')
+          clevertap.event.push('Web Notification Permission'{
+            "Status":"Granted"
+          })
+      }
+      else if (this.state === "denied"){
+          clevertap.event.push('Web Notification Permission'{
+            "Status":"Denied"
+          })
       }
     };
     });
