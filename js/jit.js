@@ -12,6 +12,11 @@ clevertap.notificationCallback = function(msg){
 //       });
 };
 
+
+document.addEventListener("CT_web_native_display", function(event) {
+    console.log(event);
+});
+
 // For OnUserLogin Function Button Click
 var pushcount = 1;
 var itemcount1 = 1;
