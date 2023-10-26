@@ -13,9 +13,9 @@ clevertap.notificationCallback = function(msg){
 };
 
 
-document.addEventListener("CT_web_native_display", function(event) {
-    console.log(event);
-});
+document.addEventListener('CT_web_native_display', function(e) {
+      console.log('Event is ', e.detail)
+    });
 
 // For OnUserLogin Function Button Click
 var pushcount = 1;
