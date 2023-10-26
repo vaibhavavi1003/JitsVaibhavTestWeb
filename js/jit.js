@@ -1,16 +1,16 @@
-// Web Custom REndering Pop-up
-    console.log("1");
-clevertap.notificationCallback = function(msg){
-      //raise the notification viewed and clicked events in the callback
-  console.log("2");
-      clevertap.raiseNotificationViewed();
-  console.log("3");
-      console.log(JSON.stringify(msg));            //your custom rendering implementation here
-//       var $button = jQuery("<button></button>");   //element on whose click you want to raise the notification clicked event
-//       $button.click(function(){
-//          clevertap.raiseNotificationClicked();
-//       });
-};
+// // Web Custom REndering Pop-up
+//     console.log("1");
+// clevertap.notificationCallback = function(msg){
+//       //raise the notification viewed and clicked events in the callback
+//   console.log("2");
+//       clevertap.raiseNotificationViewed();
+//   console.log("3");
+//       console.log(JSON.stringify(msg));            //your custom rendering implementation here
+// //       var $button = jQuery("<button></button>");   //element on whose click you want to raise the notification clicked event
+// //       $button.click(function(){
+// //          clevertap.raiseNotificationClicked();
+// //       });
+// };
 
 
 document.addEventListener('CT_web_native_display', function(e) {
