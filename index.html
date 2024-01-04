@@ -20,6 +20,12 @@
     clevertap.privacy.push({optOut: false}); 
     clevertap.privacy.push({useIP: false});
     clevertap.dismissSpamControl = true;
+
+    var clevertap2 = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+    clevertap2.account.push({"id": "65R-654-5Z6Z"});
+    clevertap2.privacy.push({optOut: false}); 
+    clevertap2.privacy.push({useIP: false});
+    clevertap2.dismissSpamControl = true;
     (function () {
         var wzrk = document.createElement('script');
         wzrk.type = 'text/javascript';
@@ -47,6 +53,10 @@
       console.log(this.state);
       if (this.state === "granted"){
           clevertap.event.push('Web Notification Permission',{
+            "Status":"Granted"
+          })
+
+          clevertap2.event.push('Web Notification Permission',{
             "Status":"Granted"
           })
       }
