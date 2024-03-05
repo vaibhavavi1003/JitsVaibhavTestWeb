@@ -35,6 +35,13 @@
         s.parentNode.insertBefore(wzrk, s);
     })();
 
+    const searchParams = new URLSearchParams("key1=value1&key2=value2");
+
+// Log the values
+searchParams.forEach((value, key) => {
+  console.log(value, key);
+});
+
     const url = new URL(document.location).searchParams;
     console.log(url);
     var pageDict = {};
