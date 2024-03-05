@@ -35,6 +35,20 @@
         s.parentNode.insertBefore(wzrk, s);
     })();
 
+    const url = new URL(window.location.href);
+    var pageDict = {};
+    url.forEach((value, key) => {
+      pageDict[key] = value;
+      console.log(value, key);
+    });
+if(pageDict != null)
+{
+clevertap.event.push("Page Viewed", pageDict);
+}
+else{
+  clevertap.event.push("Page Viewed");
+}
+
     clevertap.notifications.push({
     "titleText":'Would you like to receive Push Notifications Jitendra?',
     "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
