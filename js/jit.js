@@ -46,7 +46,7 @@ function iconChange(bannerType) {
 document.addEventListener('CT_web_native_display', function(e) {
       console.log('Event is ', e.detail)
       var bannerType = e.detail.kv
-      switch (bannerType.tpoic) {
+      switch (bannerType.topic) {
         case "jumboTron":
             jumboChange(bannerType);
             break;
