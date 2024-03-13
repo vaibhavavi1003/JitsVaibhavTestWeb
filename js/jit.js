@@ -12,11 +12,52 @@
 // //       });
 // };
 
+function jumboChange(bannerType) {
+    var textColour = ""
+    var backgroundC = ""
+    try {
+        if(bannerType.color){textColour=bannerType.color}
+        if(bannerType.background){backgroundC=bannerType.background}
+    } catch (error) {
+        console.log(error)
+    }
+    var header = document.getElementById( "jumboTron" );
+    header.classList.remove("w3-red");
+    header.style.color = textColour
+    header.style.backgroundColor = backgroundC
+}
+
+function iconChange(bannerType) {
+
+    var iconImg =""
+    try {
+        if(bannerType.icon){iconImg=bannerType.icon}
+    } catch (error) {
+        console.log(error)
+    }
+
+    var icondiv = document.getElementById("icons").classList;
+    icondiv.remove("fa-coffee");
+    icondiv.add("fa-facebook");
+    
+}
+
 
 document.addEventListener('CT_web_native_display', function(e) {
       console.log('Event is ', e.detail)
-      var bannerType = e.detail
-      console.log(bannerType.kv)
+      var bannerType = e.detail.kv
+      switch (bannerType.type) {
+        case "jumboTron":
+            jumboChange(bannerType);
+            break;
+
+        case "icon":
+            iconChange(bannerType);
+            break;
+
+        default:
+            break;
+      }
     });
 
 // For OnUserLogin Function Button Click
