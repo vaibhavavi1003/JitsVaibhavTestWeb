@@ -38,7 +38,7 @@ function iconChange(bannerType) {
 
     var icondiv = document.getElementById("icons").classList;
     icondiv.remove("fa-coffee");
-    icondiv.add("fa-facebook");
+    icondiv.add(iconImg);
     
 }
 
@@ -46,7 +46,7 @@ function iconChange(bannerType) {
 document.addEventListener('CT_web_native_display', function(e) {
       console.log('Event is ', e.detail)
       var bannerType = e.detail.kv
-      switch (bannerType.type) {
+      switch (bannerType.tpoic) {
         case "jumboTron":
             jumboChange(bannerType);
             break;
