@@ -48,18 +48,20 @@ document.addEventListener('CT_web_native_display', function(e) {
       var bannerKeys = e.detail.kv
       var bannerType = bannerKeys.topic.split(",");
       console.log(bannerType)
-      switch (bannerKeys.topic) {
-        case "jumboTron":
-            jumboChange(bannerKeys);
-            break;
-
-        case "icon":
-            iconChange(bannerKeys);
-            break;
-
-        default:
-            break;
-      }
+      bannerType.forEach(topic => {
+        switch (topic) {
+            case "jumboTron":
+                jumboChange(bannerKeys);
+                break;
+    
+            case "icon":
+                iconChange(bannerKeys);
+                break;
+    
+            default:
+                break;
+          }
+      });
     });
 
 // For OnUserLogin Function Button Click
