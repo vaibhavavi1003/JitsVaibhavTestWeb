@@ -50,7 +50,7 @@ function titleChange(bannerKeys) {
     try {
         if(bannerKeys.title){
             titleText=bannerKeys.title;
-            document.getElementById("maintitle").innerHTML(titleText);
+            document.getElementById("maintitle").innerHTML = titleText;
 
         }
     } catch (error) {
