@@ -41,8 +41,11 @@ function iconChange(bannerKeys) {
             icondiv.add(iconImg);
         }
         if (bannerKeys.imgURL) {
-            imagediv = document.getElementById("loginIcon");
-            imagediv.removeChild(imagediv.firstElementChild);            
+            var imagediv = document.getElementById("loginIcon");
+            imagediv.removeChild(imagediv.firstElementChild);   
+            const img = document.createElement("img");
+            img.setAttribute("src",bannerKeys.imgURL);
+            
         }
     } catch (error) {
         console.log(error)
