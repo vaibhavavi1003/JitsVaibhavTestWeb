@@ -40,6 +40,11 @@ function iconChange(bannerKeys) {
             icondiv.remove("fa-coffee");
             icondiv.add(iconImg);
         }
+        if (bannerKeys.imgURL) {
+            imagediv = document.getElementById("loginIcon");
+            imagediv.querySelectorAll(".fa").remove();
+            
+        }
     } catch (error) {
         console.log(error)
     }
