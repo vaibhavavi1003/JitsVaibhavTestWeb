@@ -45,6 +45,8 @@ function iconChange(bannerKeys) {
             imagediv.removeChild(imagediv.firstElementChild);   
             const img = document.createElement("img");
             img.setAttribute("src",bannerKeys.imgURL);
+            img.setAttribute("width","150px");
+            img.setAttribute("style","object-fit: fill;");
             imagediv.appendChild(img);
             
         }
