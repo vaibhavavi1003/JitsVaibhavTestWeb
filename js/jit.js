@@ -42,8 +42,7 @@ function iconChange(bannerKeys) {
         }
         if (bannerKeys.imgURL) {
             imagediv = document.getElementById("loginIcon");
-            imagediv.querySelectorAll(".fa").remove();
-            
+            imagediv.removeChild(imagediv.firstElementChild);            
         }
     } catch (error) {
         console.log(error)
