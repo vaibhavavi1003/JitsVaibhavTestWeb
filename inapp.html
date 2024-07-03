@@ -59,9 +59,14 @@
                 </div>
             </div>
         </div>
-        <section class="code-block">
-            <h2>Code Block Example</h2>
-            <pre><code>Code Block Example</code></pre>
+        <section class="code-container mt-5">
+            <div class="code-header">
+                <span>Generated Code</span>
+                <button class="copy-btn" onclick="copyCode()">Copy</button>
+            </div>
+            <textarea id="codeBlock" class="code-block" spellcheck="false">
+                // Your code goes here...
+            </textarea>
         </section>
     </main>
     <footer>

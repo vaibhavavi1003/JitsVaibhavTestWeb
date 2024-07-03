@@ -97,3 +97,14 @@ function builder(){
 
     }
 }
+
+function copyCode() {
+    const codeBlock = document.getElementById('codeBlock');
+    navigator.clipboard.writeText(codeBlock.value)
+        .then(() => {
+            alert('Code copied to clipboard!');
+        })
+        .catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+}
