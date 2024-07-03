@@ -108,3 +108,12 @@ function copyCode() {
             console.error('Failed to copy: ', err);
         });
 }
+
+function loadIframe() {
+    const codeBlock = document.getElementById('codeBlock').value;
+    const iframe = document.getElementById('codeIframe');
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDoc.open();
+    iframeDoc.write(codeBlock);
+    iframeDoc.close();
+}

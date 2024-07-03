@@ -53,7 +53,7 @@
                 <div class="col-md-4">
                     <section class="phone-preview">
                         <div class="phone-frame">
-                            <iframe src="https://jits-clever.github.io/TestWeb/"></iframe>
+                            <iframe id="codeIframe" src="about:blank" class="iframe"></iframe>
                         </div>
                     </section>
                 </div>
@@ -63,6 +63,7 @@
             <div class="code-header">
                 <span>Generated Code</span>
                 <button class="copy-btn" onclick="copyCode()">Copy</button>
+                <button class="load-btn" onclick="loadIframe()">Load in Iframe</button>
             </div>
             <textarea id="codeBlock" class="code-block" spellcheck="false">
                 // Your code goes here...
