@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>image ad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script>
+
+        var time = "2";
+        var redirectURL = "https://www.jitdemo.jitendract.com/webview"
+        var imageURL = "https://shopifyctjt.s3.ap-south-1.amazonaws.com/bmw.jpg"
+       
+    </script>
+    <style>
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                /* Start with full opacity */
+            }
+
+            100% {
+                opacity: 0;
+                /* Fade out to completely transparent */
+                visibility: hidden;
+                /* Hide the element after fading out */
+            }
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            margin: 1rem auto;
+        }
+
+        .image-container img {
+            width: 100%;
+        }
+
+        .book-now {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 1;
+            /* Ensure it's above the image */
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: #ffffff;
+            z-index: 2;
+            /* Ensure it's above the image */
+            animation: progress 10s linear forwards;
+
+        }
+
+        @keyframes progress {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popup">
+        <div class="image-container">
+            <div class="progress-bar"></div>
+            <img id="myImage">
+            <div class="book-now">Book Now</div>
+        </div>
+    </div>
+
+    <script>
+        var image = document.getElementById('myImage');
+        image.setAttribute('src', imageURL);
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const progressBar = document.querySelector(".progress-bar");
+            progressBar.addEventListener("animationend", function () {
+                const popup = document.querySelector(".popup");
+                popup.style.animation = "fadeOut 1.5s forwards";
+                setTimeout(function () {
+                    // Redirect user after 1 second (adjust this time accordingly)
+                    window.location.href = 'wzrk://exit'; // Replace "https://example.com" with your desired URL
+                }, 1500); // 1000 milliseconds = 1 second
+            });
+
+            const bookButton = document.querySelector(".book-now");
+            bookButton.onclick = function () {
+                window.location.href = 'https://jits-clever.github.io/TestWeb/'
+            };
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
