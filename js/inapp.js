@@ -46,18 +46,19 @@ function formBuilder() {
     var fields = templateJson.json_content;
 
 
-    console.log(templateJson.html_content)
+    // console.log(templateJson.html_content)
 
     for (let i = 0; i <= maxFeilds; i++) {
         const field = fields[i];
         const formGroup = document.createElement('div');
         formGroup.className = 'form-group mb-3';
-        console.log(field.description);
+        // console.log(field.description);
 
         const label = document.createElement('label');
         label.setAttribute('for', field.id);
         label.textContent = field.label;
         formGroup.appendChild(label);
+        console.log(field.replace)
 
         let input;
         if (field.type == 'Text') {
@@ -65,6 +66,7 @@ function formBuilder() {
             input.className = 'form-control';
             input.setAttribute('id', field.id);
             formGroup.appendChild(input);
+            
         } else if (field.type == 'Image') {
             input = document.createElement('input');
             input.className = 'form-control';
@@ -101,9 +103,7 @@ async function fetchData(templateName){
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            mode: 'cors'  // Explicitly set CORS mode
-
+            }
         });
 
         if (!response.ok) {
@@ -112,14 +112,14 @@ async function fetchData(templateName){
 
         templateJson = await response.json();
         templateCode=templateJson.html_content
+        console.log(templateCode)
         formBuilder();
+    
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
     
 }
-
-
 
 
 
@@ -145,18 +145,27 @@ function loadIframe() {
 
 
 function codeBuilder(){
-    if(selectedTemplateName=='Disappearing Inapp'){
-        var imageUrl=formValues.imgUrl;
-        var time=formValues.timer;
-        var deepLink=formValues.deeplink;
-        
+    var maxFeilds = templateJson.json_content.max;
+    var fields = templateJson.json_content;
+    var imageUrl=formValues.imgUrl;
+    var time=formValues.timer;
+    var deepLink=formValues.deeplink;
+    
+    for (let i = 0; i <= maxFeilds; i++) {
+        const field = fields[i];
+        const replaceText = field.replace;
+        const replaceBy = formValues[field.id] || '';
+        if(field.id=='timer'){
+            var rewrite="progress "+replaceBy+"s linear forwards;"
+            console.log("value of time"+replaceBy)
+            templateCode = templateCode.replace(replaceText, rewrite);   
 
-        templateCode = templateCode.replace(/https:\/\/shopifyctjt.s3.ap-south-1.amazonaws.com\/bmw.jpg/g, imageUrl);
-        templateCode = templateCode.replace(/https:\/\/www.jitdemo.jitendract.com\/webview/g, deepLink);
-
-        templateCode = templateCode.replace(/animation: progress \d+s linear forwards;/g, `animation: progress ${time}s linear forwards;`);
-
-
+        }
+        else{
+            templateCode = templateCode.replace(replaceText, replaceBy);   
+        }
+    }
+ 
         const codeBlock = document.getElementById('codeBlock');
         codeBlock.value=templateCode;
     navigator.clipboard.writeText(templateCode)
@@ -166,6 +175,6 @@ function codeBuilder(){
     .catch(err => {
         console.error('Failed to copy: ', err);
     });
-    }
+    
     
 }
