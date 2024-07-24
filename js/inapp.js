@@ -2,6 +2,15 @@ var templateJson;
 var templateCode;
 var selectedTemplateName;
 var formValues={};
+
+//Direclty add new template name in this array
+const templates = [
+    { id: 'e1', name: 'Disappearing Inapp', function: fetchData },
+    { id: 'e2', name: 'Footer Survey', function: fetchData },
+    { id: 'e3', name: 'Video Gif', function: fetchData }
+    
+];
+
 function startLoader() {
     var bodyTag = document.querySelector('body');
     bodyTag.classList.add('blurbg');
@@ -9,20 +18,26 @@ function startLoader() {
     loaderDiv.setAttribute("class", "loader");
     loaderDiv.setAttribute("id","processing");
     bodyTag.appendChild(loaderDiv);
-    
 }
-document.getElementById("templateType").querySelectorAll('.dropdown-item').forEach( function(el) {
-            
-    el.addEventListener('click', function() {
-        document.querySelector('.dropdown-toggle').innerText = el.textContent;
-        selectedTemplateName='Disappearing Inapp'
-        // startLoader()
-        fetchData(selectedTemplateName)
-        // var tempcode=fetchData.templateJson;
-        // console.log(templateJson)
-        // builder()
+
+function populateDropdown() {
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    dropdownMenu.innerHTML = ''; 
+
+    templates.forEach(template => {
+        const listItem = document.createElement('li');
+        listItem.className = 'dropdown-item';
+        listItem.id = template.id;
+        listItem.textContent = template.name;
+        listItem.addEventListener('click', () => {
+            document.querySelector('.dropdown-toggle').innerText = template.name;
+            selectedTemplateName = template.name;
+            template.function(selectedTemplateName);
+        });
+        dropdownMenu.appendChild(listItem);
     });
-});
+}
+populateDropdown();
 
 function templateChange(templateName,templateJson) {
     try {
@@ -44,21 +59,15 @@ function formBuilder() {
     form.innerHTML = '';
     var maxFeilds = templateJson.json_content.max;
     var fields = templateJson.json_content;
-
-
-    // console.log(templateJson.html_content)
-
     for (let i = 0; i <= maxFeilds; i++) {
         const field = fields[i];
         const formGroup = document.createElement('div');
         formGroup.className = 'form-group mb-3';
-        // console.log(field.description);
 
         const label = document.createElement('label');
         label.setAttribute('for', field.id);
         label.textContent = field.label;
         formGroup.appendChild(label);
-        console.log(field.replace)
 
         let input;
         if (field.type == 'Text') {
@@ -77,6 +86,18 @@ function formBuilder() {
             description.className = 'form-text mt-2';
             description.textContent = field.description;
             formGroup.appendChild(description);
+        }else if(field.type =='ColorPicker'){
+            input = document.createElement('input');
+            input.className = 'form-control';
+         input.setAttribute('type', 'color');
+         input.setAttribute('id', field.id);
+            formGroup.appendChild(input);
+
+            const description = document.createElement('p');
+    description.className = 'form-text mt-2';
+    description.textContent = field.description;
+    formGroup.appendChild(description);
+
         }
 
         form.appendChild(formGroup);
@@ -94,9 +115,7 @@ function fetchFormData() {
     codeBuilder()
 }
 
-
 async function fetchData(templateName){
-
     const url = `https://v5ffl5exja.execute-api.ap-south-1.amazonaws.com/prod?inappTemplate=${templateName}`;
     try {
         const response = await fetch(url, {
@@ -112,7 +131,6 @@ async function fetchData(templateName){
 
         templateJson = await response.json();
         templateCode=templateJson.html_content
-        console.log(templateCode)
         formBuilder();
     
     } catch (error) {
@@ -120,8 +138,6 @@ async function fetchData(templateName){
     }
     
 }
-
-
 
 function copyCode() {
     const codeBlock = document.getElementById('codeBlock');
@@ -152,18 +168,15 @@ function codeBuilder(){
     var deepLink=formValues.deeplink;
     
     for (let i = 0; i <= maxFeilds; i++) {
-        const field = fields[i];
-        const replaceText = field.replace;
-        const replaceBy = formValues[field.id] || '';
-        if(field.id=='timer'){
-            var rewrite="progress "+replaceBy+"s linear forwards;"
-            console.log("value of time"+replaceBy)
-            templateCode = templateCode.replace(replaceText, rewrite);   
+        var field = fields[i];
+        var replaceText = field.replace;
+        var replaceBy = formValues[field.id] || '';
+        var replaceval=field.replaceVal;
 
+        if(replaceval!==undefined){
+            replaceBy=replaceText.replace(replaceval,replaceBy)
         }
-        else{
-            templateCode = templateCode.replace(replaceText, replaceBy);   
-        }
+             templateCode = templateCode.replace(replaceText, replaceBy);  
     }
  
         const codeBlock = document.getElementById('codeBlock');
@@ -175,6 +188,4 @@ function codeBuilder(){
     .catch(err => {
         console.error('Failed to copy: ', err);
     });
-    
-    
 }
