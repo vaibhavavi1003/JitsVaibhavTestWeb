@@ -61,7 +61,8 @@ else{
 var message = { action:'recordEventWithProps', event:'Product Viewed', properties: props};
 if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.JFSCT){
  // Call iOS interface       
-  window.webkit.messageHandlers.JFSCT.postMessage(message);         
+  window.webkit.messageHandlers.JFSCT.postMessage(message);
+  console.log(message);
 } 
 
     clevertap.notifications.push({
