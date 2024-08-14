@@ -57,6 +57,13 @@ else{
   clevertap.event.push("Page Viewed");
 }
 
+    var props = {foo: 'xyz', lang: 'French'};
+var message = { action:'recordEventWithProps', event:'Product Viewed', properties: props};
+if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.your_variable_name_here){
+ // Call iOS interface       
+  window.webkit.messageHandlers.your_variable_name_here.postMessage(message);         
+} 
+
     clevertap.notifications.push({
     "titleText":'Would you like to receive Push Notifications Jitendra?',
     "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
