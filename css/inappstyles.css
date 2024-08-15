@@ -146,37 +146,39 @@ footer {
 }
 
 /* HTML: <div class="loader"></div> */
+/* Blur the main content */
+.blurbg #content {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+/* Loader styles */
 .loader {
     width: fit-content;
     font-weight: bold;
     font-family: monospace;
     font-size: 30px;
-    background: radial-gradient(circle closest-side,#000 94%,#0000) right/calc(200% - 1em) 100%;
+    background: radial-gradient(circle closest-side, #000 94%, #0000) right/calc(200% - 1em) 100%;
     animation: l24 1s infinite alternate linear;
-    position: absolute;
+    position: fixed; /* Fixed to keep it centered */
     top: 50%;
     left: 50%;
-    z-index: 2;
-    filter: blur(8px);
-  -webkit-filter: blur(8px);
-  }
-  .loader::before {
+    transform: translate(-50%, -50%); /* Centering the loader */
+    z-index: 9999; /* Ensure it is on top of everything */
+}
+
+.loader::before {
     content: "Loading...";
     line-height: 1em;
     color: #0000;
     background: inherit;
-    background-image: radial-gradient(circle closest-side,#fff 94%,#000);
-    -webkit-background-clip:text;
-            background-clip:text;
-  }
-  
-  @keyframes l24{
-    100%{background-position: left}
-  }
+    background-image: radial-gradient(circle closest-side, #fff 94%, #000);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
 
-.blurbg {
-    filter: blur(8px);
-  -webkit-filter: blur(8px);
+@keyframes l24 {
+    100% { background-position: left; }
 }
 
 .code-container {

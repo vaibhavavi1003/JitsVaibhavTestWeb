@@ -20,6 +20,15 @@ function startLoader() {
     loaderDiv.setAttribute("id","processing");
     bodyTag.appendChild(loaderDiv);
 }
+function hideLoader() {
+    var loaderDiv = document.getElementById("processing");
+    if (loaderDiv) {
+        loaderDiv.remove(); // Remove the loader div from the DOM
+    }
+
+    var bodyTag = document.querySelector('body');
+    bodyTag.classList.remove('blurbg'); // Remove the blurbg class from the body
+}
 
 function populateDropdown() {
     const dropdownMenu = document.querySelector('.dropdown-menu');
@@ -89,7 +98,7 @@ function formBuilder() {
             formGroup.appendChild(description);
         }else if(field.type =='ColorPicker'){
             input = document.createElement('input');
-            input.className = 'form-control';
+            input.className = 'col-sm-1 col-form-label';
          input.setAttribute('type', 'color');
          input.setAttribute('id', field.id);
             formGroup.appendChild(input);
@@ -119,6 +128,7 @@ function fetchFormData() {
 async function fetchData(templateName){
     const url = `https://v5ffl5exja.execute-api.ap-south-1.amazonaws.com/prod?inappTemplate=${templateName}`;
     try {
+        startLoader()
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -136,6 +146,9 @@ async function fetchData(templateName){
     
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
+    }
+    finally{
+        hideLoader();
     }
     
 }
