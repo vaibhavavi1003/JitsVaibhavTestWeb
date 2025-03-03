@@ -8,8 +8,9 @@ const templates = [
     { id: 'e1', name: 'Disappearing Inapp', function: fetchData },
     { id: 'e2', name: 'Footer Survey', function: fetchData },
     { id: 'e3', name: 'Video Gif', function: fetchData },
-    { id: 'e4', name: 'Image Carousel', function: fetchData }
-    
+    { id: 'e4', name: 'Image Carousel', function: fetchData },
+    { id: 'e5', name: 'Feedback Rating with PlayStore', function: fetchData },
+    { id: 'e4', name: 'Dynamic PIP', function: fetchData }
 ];
 
 function startLoader() {
