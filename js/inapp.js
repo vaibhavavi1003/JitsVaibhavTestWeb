@@ -10,7 +10,8 @@ const templates = [
     { id: 'e3', name: 'Video Gif', function: fetchData },
     { id: 'e4', name: 'Image Carousel', function: fetchData },
     { id: 'e5', name: 'Feedback Rating with PlayStore', function: fetchData },
-    { id: 'e4', name: 'Dynamic PIP', function: fetchData }
+    { id: 'e6', name: 'Dynamic PIP', function: fetchData },
+    { id: 'e7', name: 'Scratch Card', function: fetchData }
 ];
 
 function startLoader() {
