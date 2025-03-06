@@ -14,7 +14,8 @@ const templates = [
     { id: "e6", name: "Feedback Rating with PlayStore", function: fetchData },
     { id: "e7", name: "Dynamic PIP", function: fetchData },
     { id: "e8", name: "Stories v1", function: fetchData },
-    { id: "e9", name: "Stories v2", function: fetchData }
+    { id: "e9", name: "Stories v2", function: fetchData },
+    { id: "e10", name: "Scratch Card", function: fetchData },
 ];
 
 function startLoader() {
@@ -258,12 +259,7 @@ function createFormField(field, parentElement, prefix = "") {
   parentElement.appendChild(formGroup);
 }
 
-// ...existing code...
-
-// Update the arrayTabsInfo declaration and provide proper tab tracking
 let arrayTabsInfo = {};
-
-// ...existing code...
 
 function processDynamicContent(dynamicContent, form) {
   if (!dynamicContent || !Array.isArray(dynamicContent)) return;
@@ -553,7 +549,6 @@ function processDynamicContent(dynamicContent, form) {
 }
 
 
-// Updated function to create a dynamic content tab with better tab closing
 function createDynamicContentTab(tabNav, tabContent, options) {
     const { id, title, isActive, content, itemIndex, removable, parentInfo } = options;
   
@@ -953,6 +948,7 @@ function codeBuilder() {
       console.log("Code copied to clipboard!");
     })
     .catch((err) => {
-      console.error("Failed to copy: ", err);
+      console.error("Failed to copy: ", 
+        err);
     });
 }
