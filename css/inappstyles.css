@@ -226,3 +226,25 @@ footer {
 .code-block:focus {
     outline: none;
 }
+
+.dynamic-content-tabs .nav-tabs {
+    border-bottom: 0;
+}
+
+.dynamic-content-tabs .tab-content {
+    min-height: 200px;
+    background-color: #fff;
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.dynamic-item {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+}
+
+.dynamic-item:last-child {
+    margin-bottom: 0;
+}
