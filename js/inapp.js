@@ -6,15 +6,16 @@ var dynamicValues = {};
 
 // Directly add new template names in this array
 const templates = [
+
     { id: "e1", name: "Disappearing Inapp", function: fetchData },
     { id: "e2", name: "Footer Survey", function: fetchData },
-    { id: "e3", name: "Footer Survey (multiple)", function: fetchData },
+    { id: "e3", name: "Footer Survey (Multiple)", function: fetchData },
     { id: "e4", name: "Video Gif", function: fetchData },
     { id: "e5", name: "Image Carousel", function: fetchData },
     { id: "e6", name: "Feedback Rating with PlayStore", function: fetchData },
     { id: "e7", name: "Dynamic PIP", function: fetchData },
-    { id: "e8", name: "Stories v1", function: fetchData },
-    { id: "e9", name: "Stories v2", function: fetchData },
+    { id: "e8", name: "Stories V1", function: fetchData },
+    { id: "e9", name: "Stories V2", function: fetchData },
     { id: "e10", name: "Scratch Card", function: fetchData },
 ];
 
