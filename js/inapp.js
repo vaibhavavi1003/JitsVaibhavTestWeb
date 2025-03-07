@@ -17,6 +17,7 @@ const templates = [
     { id: "e8", name: "Stories V1", function: fetchData },
     { id: "e9", name: "Stories V2", function: fetchData },
     { id: "e10", name: "Scratch Card", function: fetchData },
+    { id: '"11", name: "Copy Coupon Code", function: fetchData }
 ];
 
 function startLoader() {
