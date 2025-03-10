@@ -58,20 +58,20 @@ function populateDropdown() {
 }
 populateDropdown();
 
-function templateChange(templateName, templateJson) {
-  try {
-    switch (templateName) {
-      case "Disappearing Inapp":
-        DA();
-        break;
+// function templateChange(templateName, templateJson) {
+//   try {
+//     switch (templateName) {
+//       case "Disappearing Inapp":
+//         DA();
+//         break;
 
-      default:
-        break;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
+//       default:
+//         break;
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 function formBuilder() {
   const form = document.getElementById("dynamicContent");
@@ -389,165 +389,6 @@ function processDynamicContent(dynamicContent, form) {
       bsTab.show();
     });
   });
-
-  // Add custom CSS for better tab styling
-  const style = document.createElement("style");
-  style.textContent = `
-    /* Base tab styles - ensure text is dark regardless of theme */
-    .nav-tabs .nav-link {
-        color: #495057 !important;
-        background-color: #e9ecef;
-        border-color: #dee2e6 #dee2e6 #fff;
-        margin-right: 4px;
-        position: relative;
-        padding-right: 30px;
-    }
-    
-    .nav-tabs .nav-link.active {
-        color: #212529 !important;
-        background-color: #fff;
-        border-color: #dee2e6 #dee2e6 #fff;
-        font-weight: 500;
-    }
-    
-    .nav-tabs .nav-link:hover {
-        background-color: #f2f4f6;
-    }
-    
-    /* Fix color contrast for ALL content */
-    .dynamic-section h4, .array-item h4, 
-    .dynamic-section h5, .array-item h5,
-    .dynamic-section p, .array-item p,
-    .tab-pane, .tab-content {
-        color: #212529 !important;
-    }
-    
-    /* Form fields and labels */
-    .dynamic-section .form-group label,
-    .array-item .form-group label,
-    #dynamicContent .form-group label,
-    .form-group label {
-        color: #212529 !important;
-    }
-    
-    /* Ensure form inputs have proper contrast */
-    .form-control, .form-select {
-        color: #212529 !important;
-        background-color: #fff !important;
-    }
-    
-    /* Tab button styles */
-    .nav-add-btn {
-        padding: 0;
-        width: 28px;
-        height: 28px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-    }
-    
-    .add-tab-button {
-        display: flex;
-        align-items: center;
-    }
-    
-    .remove-tab-btn {
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 18px;
-        height: 18px;
-        font-size: 14px;
-        padding: 0;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        color: #fff !important;
-        background-color: #dc3545 !important;
-        border: none;
-    }
-    
-    /* Tab content appearance */
-    .dynamic-content-tabs .tab-content {
-        background-color: #fff;
-        min-height: 250px;
-        color: #212529 !important;
-    }
-    
-    /* Section styling */
-    .dynamic-section {
-        padding: 10px;
-        color: #212529 !important;
-    }
-    
-    .array-item {
-        padding: 15px;
-        background-color: #f8f9fa;
-        border-radius: 4px;
-        margin-bottom: 15px;
-        border: 1px solid #e9ecef;
-        color: #212529 !important;
-    }
-    
-    /* Tab scrolling for many tabs */
-    #dynamicContentTabs {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        scrollbar-width: thin;
-        max-width: 100%;
-        border-bottom: 1px solid #dee2e6;
-    }
-    
-    #dynamicContentTabs::-webkit-scrollbar {
-        height: 6px;
-    }
-    
-    #dynamicContentTabs::-webkit-scrollbar-thumb {
-        background: #cccccc;
-        border-radius: 10px;
-    }
-    
-    #dynamicContentTabs::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-    
-    #dynamicContentTabs .nav-item {
-        float: none;
-        display: inline-block;
-    }
-    
-    /* Static content section styling */
-    #dynamicContent > .form-group {
-        background-color: #fff;
-        padding: 15px;
-        border-radius: 4px;
-        margin-bottom: 15px;
-        border: 1px solid #e9ecef;
-        color: #212529 !important;
-    }
-    
-    /* Form field label styling */
-    .form-group label {
-        font-weight: 500;
-        color: #212529 !important;
-        margin-bottom: 0.5rem;
-    }
-    
-    /* Form description text */
-    .form-text {
-        color: #6c757d !important;
-        font-size: 0.875rem;
-    }
-  `;
-  document.head.appendChild(style);
 }
 
 
@@ -578,7 +419,7 @@ function createDynamicContentTab(tabNav, tabContent, options) {
     if (removable) {
       const removeBtn = document.createElement("button");
       removeBtn.className = "btn btn-danger btn-sm remove-tab-btn";
-      removeBtn.innerHTML = "×";
+      // removeBtn.innerHTML = "×";
       removeBtn.title = `Remove ${title}`;
       removeBtn.setAttribute("aria-label", `Remove ${title}`);
       removeBtn.onclick = function (e) {
@@ -856,6 +697,13 @@ async function fetchData(templateName) {
 
     templateJson = await response.json();
     templateCode = templateJson.html_content;
+    //Preview the template
+    if (!templateJson.json_content.dynamicContent) {
+      loadIframe(templateCode);
+    }else if (templateJson.json_content.sample) {
+      // For dynamic templates with sample data, process and preview
+      loadDynamicPreview();
+    } 
     formBuilder();
   } catch (error) {
     console.error("There was a problem with the fetch operation:", error);
@@ -876,18 +724,50 @@ function copyCode() {
     });
 }
 
-function loadIframe() {
-  const codeBlock = document.getElementById("codeBlock").value;
-  const iframe = document.getElementById("codeIframe");
-  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-  iframeDoc.open();
-  iframeDoc.write(codeBlock);
-  iframeDoc.close();
+function loadDynamicPreview() {
+  // Get sample data from the template
+  const sampleValues = templateJson.json_content.sample;
+  
+  // Call codeBuilder in preview mode with sample data
+  codeBuilder(true, sampleValues);
 }
 
-function codeBuilder() {
+function loadIframe(template) {
+  // Get reference to the existing iframe
+  const iframe = document.getElementById("codeIframe");
+  
+  // Create a unique name to prevent caching issues
+  const uniqueName = 'iframe_' + Date.now();
+  
+  // Create a new iframe element
+  const newIframe = document.createElement('iframe');
+  newIframe.id = "codeIframe";
+  newIframe.className = iframe.className;
+  newIframe.style.cssText = iframe.style.cssText;
+  
+  // Replace the old iframe with the new one
+  iframe.parentNode.replaceChild(newIframe, iframe);
+  
+  // Write content to the new iframe
+  const iframeDoc = newIframe.contentDocument || newIframe.contentWindow.document;
+  
+  if (template) {
+    iframeDoc.open();
+    iframeDoc.write(template);
+    iframeDoc.close();
+  } else {
+    // Otherwise use what's in the code block
+    const codeBlock = document.getElementById("codeBlock");
+    iframeDoc.open();
+    iframeDoc.write(codeBlock.value);
+    iframeDoc.close();
+  }
+}
+
+function codeBuilder(isPreview = false, previewData = null) {
   let processedCode = templateCode;
 
+  const dynamicDataToUse = isPreview ? previewData : dynamicValues;
   // Process static replacements (legacy support)
   if (templateJson.json_content) {
     var maxFields = templateJson.json_content.max;
@@ -909,8 +789,8 @@ function codeBuilder() {
   }
 
   // Process dynamic content
-  if (dynamicValues && Object.keys(dynamicValues).length > 0) {
-    for (const [variableName, value] of Object.entries(dynamicValues)) {
+  if (dynamicValues && Object.keys(dynamicDataToUse).length > 0) {
+    for (const [variableName, value] of Object.entries(dynamicDataToUse)) {
       // Create a placeholder pattern that matches {{variableName}}
       const placeholderPattern = new RegExp(`\\{\\{${variableName}\\}\\}`, "g");
 
@@ -921,7 +801,7 @@ function codeBuilder() {
 
     // Also add the variables as JavaScript declarations for any script that needs them
     let dynamicJsCode = "";
-    for (const [variableName, value] of Object.entries(dynamicValues)) {
+    for (const [variableName, value] of Object.entries(dynamicDataToUse)) {
       dynamicJsCode += `const ${variableName} = ${JSON.stringify(
         value,
         null,
@@ -940,6 +820,7 @@ function codeBuilder() {
         processedCode.slice(headClosePoint);
     }
   }
+
 
   const codeBlock = document.getElementById("codeBlock");
   codeBlock.value = processedCode;
