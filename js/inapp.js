@@ -17,6 +17,7 @@ const templates = [
     { id: "e8", name: "Stories V1", function: fetchData },
     { id: "e9", name: "Stories V2", function: fetchData },
     { id: "e10", name: "Scratch Card", function: fetchData },
+    { id: "e11", name: "Copy Coupon Code", function: fetchData }
 ];
 
 function startLoader() {
@@ -820,9 +821,17 @@ function codeBuilder(isPreview = false, previewData = null) {
     }
   }
 
-  if (!isPreview) {
-    const codeBlock = document.getElementById("codeBlock");
-    codeBlock.value = processedCode;
-  }
-  loadIframe(processedCode);
+
+  const codeBlock = document.getElementById("codeBlock");
+  codeBlock.value = processedCode;
+
+  navigator.clipboard
+    .writeText(processedCode)
+    .then(() => {
+      console.log("Code copied to clipboard!");
+    })
+    .catch((err) => {
+      console.error("Failed to copy: ", 
+        err);
+    });
 }
