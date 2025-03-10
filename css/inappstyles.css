@@ -83,6 +83,20 @@ main {
     overflow: hidden;
     position: relative;
 }
+/* Responsive Design */
+@media (max-width: 768px) {
+    .phone-frame {
+        width: 80%;
+        height: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .phone-frame {
+        width: 95%;
+        height: 450px;
+    }
+}
 
 .iframe {
     width: 100%;
