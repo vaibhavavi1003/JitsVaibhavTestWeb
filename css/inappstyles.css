@@ -65,17 +65,21 @@ main {
 }
 
 .phone-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    text-align: center;
+    padding: 20px 0;
 }
 
 .phone-frame {
-    width: 300px;
+    width: 90%; /* Adjusting width for better scaling */
+    max-width: 350px; /* Limiting maximum size */
     height: 600px;
     border: 10px solid black;
     border-radius: 30px;
     background-color: #fff;
-    margin: 0 auto;
+    margin: auto;
     overflow: hidden;
     position: relative;
 }
@@ -84,10 +88,11 @@ main {
     width: 100%;
     height: 100%;
     border: none;
-    position: absolute; /* Add this line */
-    top: 0; /* Add this line */
-    left: 0; /* Add this line */
+    position: absolute;
+    top: 0;
+    left: 0;
 }
+
 
 .filters {
     background-color: #333;
