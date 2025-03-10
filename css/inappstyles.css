@@ -87,6 +87,7 @@ main {
     position: absolute; /* Add this line */
     top: 0; /* Add this line */
     left: 0; /* Add this line */
+    overflow: hidden;
 }
 
 .filters {
@@ -247,4 +248,183 @@ footer {
 
 .dynamic-item:last-child {
     margin-bottom: 0;
+}
+
+/* ...existing code... */
+
+/* Dynamic Content Tab Styles */
+#dynamicContentTabs .nav-link {
+    color: #495057 !important;
+    background-color: #e9ecef;
+    border-color: #dee2e6 #dee2e6 #fff;
+    margin-right: 4px;
+    position: relative;
+    padding-right: 30px;
+}
+
+#dynamicContentTabs .nav-link.active {
+    color: #212529 !important;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+    font-weight: 500;
+}
+
+#dynamicContentTabs .nav-link:hover {
+    background-color: #f2f4f6;
+}
+
+/* Fix color contrast for dynamic content */
+.dynamic-section h4, .array-item h4, 
+.dynamic-section h5, .array-item h5,
+.dynamic-section p, .array-item p,
+.tab-pane, .tab-content {
+    color: #212529 !important;
+}
+
+/* Form fields and labels */
+.dynamic-section .form-group label,
+.array-item .form-group label,
+#dynamicContent .form-group label,
+.form-group label {
+    color: #212529 !important;
+}
+
+/* Form inputs contrast */
+.form-control, .form-select {
+    color: #212529 !important;
+    background-color: #fff !important;
+}
+
+/* Tab button styles - Modified for better positioning */
+.nav-add-btn {
+    padding: 0 !important;
+    width: 28px !important;
+    height: 28px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+}
+
+.add-tab-button {
+    display: flex !important;
+    align-items: center !important;
+    margin-left: 5px !important;
+}
+
+/* Make the + symbol centered in the button */
+.nav-add-btn span {
+    display: inline-block !important;
+    line-height: 0 !important;
+    position: relative !important;
+    top: -1px !important; /* Fine-tune vertical alignment */
+}
+
+/* Fix the close button positioning */
+.remove-tab-btn {
+    position: absolute !important;
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 14px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    color: #fff !important;
+    background-color: #dc3545 !important;
+    border: none !important;
+    line-height: 1 !important;
+    z-index: 2 !important; /* Ensure it's above other elements */
+}
+
+/* Make the X symbol centered in the button */
+.remove-tab-btn::before {
+    content: "×";
+    display: inline-block !important;
+    line-height: 0 !important;
+    position: relative !important;
+    top: -1px !important; /* Fine-tune vertical alignment */
+}
+
+/* Tab content appearance */
+.dynamic-content-tabs .tab-content {
+    background-color: #fff;
+    min-height: 250px;
+    color: #212529 !important;
+}
+
+/* Section styling */
+.dynamic-section {
+    padding: 10px;
+    color: #212529 !important;
+}
+
+.array-item {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #e9ecef;
+    color: #212529 !important;
+}
+
+/* Tab scrolling for many tabs */
+#dynamicContentTabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    scrollbar-width: thin;
+    max-width: 100%;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#dynamicContentTabs::-webkit-scrollbar {
+    height: 6px;
+}
+
+#dynamicContentTabs::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+}
+
+#dynamicContentTabs::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#dynamicContentTabs .nav-item {
+    float: none;
+    display: inline-block;
+}
+
+/* Static content section styling */
+#dynamicContent > .form-group {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #e9ecef;
+    color: #212529 !important;
+}
+
+/* Form field label styling */
+.form-group label {
+    font-weight: 500;
+    color: #212529 !important;
+    margin-bottom: 0.5rem;
+}
+
+/* Form description text */
+.form-text {
+    color: #6c757d !important;
+    font-size: 0.875rem;
 }
