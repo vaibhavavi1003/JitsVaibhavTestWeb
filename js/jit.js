@@ -102,10 +102,10 @@ var itemcount2 = 1;
 
 
 
-// function start(){
-//     var label = document.getElementById("ctid");
-//     label.innerHTML = "Clevertap id is : " + clevertap.getCleverTapID();
-// }
+function start(){
+    var label = document.getElementById("ctid");
+    label.innerHTML = "Clevertap id is : " + clevertap.getCleverTapID();
+}
 
 function loginClicked(){
     var name = document.getElementById("profileName").value;
