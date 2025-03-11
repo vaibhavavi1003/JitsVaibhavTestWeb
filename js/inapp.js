@@ -17,7 +17,6 @@ const templates = [
     { id: "e8", name: "Stories V1", function: fetchData },
     { id: "e9", name: "Stories V2", function: fetchData },
     { id: "e10", name: "Scratch Card", function: fetchData },
-    { id: "e11", name: "Copy Coupon Code", function: fetchData }
 ];
 
 function startLoader() {
@@ -789,7 +788,7 @@ function codeBuilder(isPreview = false, previewData = null) {
   }
 
   // Process dynamic content
-  if (dynamicDataToUse && Object.keys(dynamicDataToUse).length > 0) {
+  if (dynamicValues && Object.keys(dynamicDataToUse).length > 0) {
     for (const [variableName, value] of Object.entries(dynamicDataToUse)) {
       // Create a placeholder pattern that matches {{variableName}}
       const placeholderPattern = new RegExp(`\\{\\{${variableName}\\}\\}`, "g");
@@ -821,17 +820,9 @@ function codeBuilder(isPreview = false, previewData = null) {
     }
   }
 
-
-  const codeBlock = document.getElementById("codeBlock");
-  codeBlock.value = processedCode;
-
-  navigator.clipboard
-    .writeText(processedCode)
-    .then(() => {
-      console.log("Code copied to clipboard!");
-    })
-    .catch((err) => {
-      console.error("Failed to copy: ", 
-        err);
-    });
+  if (!isPreview) {
+    const codeBlock = document.getElementById("codeBlock");
+    codeBlock.value = processedCode;
+  }
+  loadIframe(processedCode);
 }
