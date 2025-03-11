@@ -788,7 +788,7 @@ function codeBuilder(isPreview = false, previewData = null) {
   }
 
   // Process dynamic content
-  if (dynamicValues && Object.keys(dynamicDataToUse).length > 0) {
+  if (dynamicDataToUse && Object.keys(dynamicDataToUse).length > 0) {
     for (const [variableName, value] of Object.entries(dynamicDataToUse)) {
       // Create a placeholder pattern that matches {{variableName}}
       const placeholderPattern = new RegExp(`\\{\\{${variableName}\\}\\}`, "g");
