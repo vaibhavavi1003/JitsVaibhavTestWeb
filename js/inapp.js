@@ -20,6 +20,7 @@ const templates = [
     { id: "e11", name: "Copy Coupon Code", function: fetchData }
 ];
 
+// Start the loading screen
 function startLoader() {
   var bodyTag = document.querySelector("body");
   bodyTag.classList.add("blurbg");
@@ -27,6 +28,7 @@ function startLoader() {
   loaderDiv.setAttribute("class", "loader");
   loaderDiv.setAttribute("id", "processing");
   bodyTag.appendChild(loaderDiv);
+  // No need to add any inner HTML for the new loader as it uses ::before and ::after
 }
 
 function hideLoader() {
