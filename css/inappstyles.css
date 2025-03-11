@@ -172,33 +172,41 @@ footer {
     -webkit-filter: blur(8px);
 }
 
-/* Loader styles */
+/* Fixed loader styles */
 .loader {
-    width: fit-content;
-    font-weight: bold;
-    font-family: monospace;
-    font-size: 30px;
-    background: radial-gradient(circle closest-side, #000 94%, #0000) right/calc(200% - 1em) 100%;
-    animation: l24 1s infinite alternate linear;
-    position: fixed; /* Fixed to keep it centered */
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    -webkit-mask: conic-gradient(from 15deg, #0000, #000);
+    animation: l26 1s infinite steps(12);
+    position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centering the loader */
-    z-index: 9999; /* Ensure it is on top of everything */
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transform-origin: center center; /* Explicitly set the transform origin */
 }
 
-.loader::before {
-    content: "Loading...";
-    line-height: 1em;
-    color: #0000;
-    background: inherit;
-    background-image: radial-gradient(circle closest-side, #fff 94%, #000);
-    -webkit-background-clip: text;
-    background-clip: text;
+.loader, .loader:before, .loader:after {
+    background: radial-gradient(closest-side at 50% 12.5%, #ffc107 96%, #0000) 50% 0/20% 80% repeat-y,
+                radial-gradient(closest-side at 12.5% 50%, #ffc107 96%, #0000) 0 50%/80% 20% repeat-x;
 }
 
-@keyframes l24 {
-    100% { background-position: left; }
+.loader:before, .loader:after {
+    content: "";
+    grid-area: 1/1;
+}
+
+.loader:before {
+    transform: rotate(30deg);
+}
+
+.loader:after {
+    transform: rotate(60deg);
+}
+@keyframes l26 { 
+    from {transform: translate(-50%, -50%) rotate(0turn)}
+    to {transform: translate(-50%, -50%) rotate(1turn)}
 }
 
 .code-container {
