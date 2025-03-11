@@ -65,17 +65,21 @@ main {
 }
 
 .phone-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    text-align: center;
+    padding: 20px 0;
 }
 
 .phone-frame {
-    width: 300px;
+    width: 90%; /* Adjusting width for better scaling */
+    max-width: 350px; /* Limiting maximum size */
     height: 600px;
     border: 10px solid black;
     border-radius: 30px;
     background-color: #fff;
-    margin: 0 auto;
+    margin: auto;
     overflow: hidden;
     position: relative;
 }
@@ -89,6 +93,7 @@ main {
     left: 0; /* Add this line */
     overflow: hidden;
 }
+
 
 .filters {
     background-color: #333;
@@ -249,8 +254,6 @@ footer {
 .dynamic-item:last-child {
     margin-bottom: 0;
 }
-
-/* ...existing code... */
 
 /* Dynamic Content Tab Styles */
 #dynamicContentTabs .nav-link {
