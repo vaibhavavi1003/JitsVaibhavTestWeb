@@ -79,6 +79,63 @@ function formBuilder() {
   const form = document.getElementById("dynamicContent");
   form.innerHTML = "";
 
+  // Add template description if available
+  if (templateJson.json_content.description) {
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.className = "template-description mb-4 p-4";
+    
+    // Add icon and title in a flex container
+    const titleRow = document.createElement("div");
+    titleRow.className = "title-row";
+    
+    // Icon for description
+    const icon = document.createElement("span");
+    icon.innerHTML = "&#9432;"; // Information symbol
+    icon.className = "info-icon";
+    titleRow.appendChild(icon);
+    
+    // Template name as title
+    const descriptionTitle = document.createElement("h4");
+    descriptionTitle.className = "description-title";
+    descriptionTitle.textContent = selectedTemplateName || "Template Description";
+    titleRow.appendChild(descriptionTitle);
+    
+    descriptionContainer.appendChild(titleRow);
+    
+    // Process description text and bullets
+    if (typeof templateJson.json_content.description === 'string') {
+      // Legacy support for string descriptions
+      const descriptionText = document.createElement("p");
+      descriptionText.className = "description-text";
+      descriptionText.textContent = templateJson.json_content.description;
+      descriptionContainer.appendChild(descriptionText);
+    } else {
+      // Support for enhanced description with text and bullets
+      if (templateJson.json_content.description.text) {
+        const descriptionText = document.createElement("p");
+        descriptionText.className = "description-text";
+        descriptionText.textContent = templateJson.json_content.description.text;
+        descriptionContainer.appendChild(descriptionText);
+      }
+      
+      // Add bullet points if available
+      if (templateJson.json_content.description.bullets && 
+          templateJson.json_content.description.bullets.length) {
+        const bulletList = document.createElement("ul");
+        bulletList.className = "description-bullets";
+        
+        templateJson.json_content.description.bullets.forEach(bullet => {
+          const bulletItem = document.createElement("li");
+          bulletItem.textContent = bullet;
+          bulletList.appendChild(bulletItem);
+        });
+        
+        descriptionContainer.appendChild(bulletList);
+      }
+    }
+    
+    form.appendChild(descriptionContainer);
+  }
   // Process static fields first (legacy support)
   if (templateJson.json_content) {
     var maxFields = templateJson.json_content.max;
@@ -764,6 +821,33 @@ function loadIframe(template) {
     iframeDoc.write(codeBlock.value);
     iframeDoc.close();
   }
+  setTimeout(() => {
+    // Calculate the scaling factor based on content size vs iframe size
+    const content = iframeDoc.body;
+    const contentWidth = content.scrollWidth;
+    const contentHeight = content.scrollHeight;
+    const frameWidth = iframe.clientWidth;
+    const frameHeight = iframe.clientHeight;
+    
+    // Determine which dimension requires more scaling
+    const scaleX = frameWidth / contentWidth;
+    const scaleY = frameHeight / contentHeight;
+    const scale = Math.min(scaleX, scaleY, 1); // Don't scale up, only down
+    
+    // Apply the transform
+    iframe.style.transform = `scale(${scale})`;
+    
+    // If the content is smaller than the frame, center it
+    if (scale === 1) {
+      const xOffset = (frameWidth - contentWidth) / 2;
+      const yOffset = (frameHeight - contentHeight) / 2;
+      iframe.style.left = xOffset > 0 ? `${xOffset}px` : '0';
+      iframe.style.top = yOffset > 0 ? `${yOffset}px` : '0';
+    } else {
+      iframe.style.left = '0';
+      iframe.style.top = '0';
+    }
+  }, 100);
 }
 
 function codeBuilder(isPreview = false, previewData = null) {
